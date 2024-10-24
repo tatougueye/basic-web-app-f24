@@ -39,6 +39,17 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+    // New condition for multiplying two numbers
+    if (query.match(/What is \d+ multiplied by \d+\?/)) {
+      const numbers = query.match(/\d+/g)?.map(Number);
+      if (numbers && numbers.length === 2) {
+        const product = numbers[0] * numbers[1];
+        return `${product}`;
+      } else {
+        return "No valid numbers found for multiplication.";
+      }
+    }
+
   return "Query not recognized.";
 }
 
