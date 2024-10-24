@@ -29,5 +29,16 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.match(/What is \d+ plus \d+\?/)) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length === 2) {
+      const sum = numbers[0] + numbers[1];
+      return `${sum}`;
+    } else {
+      return "No valid numbers found for addition.";
+    }
+  }
+
   return "Query not recognized.";
 }
+
